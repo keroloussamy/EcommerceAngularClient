@@ -9,21 +9,36 @@ import { AddCtegoryComponent } from './Category/add-ctegory/add-ctegory.componen
 import { CategoriesListComponent } from './Category/categories-list/categories-list.component';
 import { EditCategoryComponent } from './Category/edit-category/edit-category.component';
 
+
+
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
     AddCtegoryComponent,
     CategoriesListComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    HeaderComponent,
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserModule,
+
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

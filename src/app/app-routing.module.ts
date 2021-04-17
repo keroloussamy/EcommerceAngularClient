@@ -4,12 +4,15 @@ import { AddCtegoryComponent } from './Category/add-ctegory/add-ctegory.componen
 import { CategoriesListComponent } from './Category/categories-list/categories-list.component';
 import { EditCategoryComponent } from './Category/edit-category/edit-category.component';
 
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+
 const routes: Routes = [
   {path:"category/add", component:AddCtegoryComponent},
   {path:"categories", component:CategoriesListComponent},
-  {path:"categories/edit/:id", component:EditCategoryComponent}
-
-
+  {path:"categories/edit/:id", component:EditCategoryComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
