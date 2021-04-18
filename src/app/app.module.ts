@@ -30,11 +30,8 @@ import { ProfileComponent } from './auth/profile/profile.component';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-<<<<<<< HEAD
-    HomeComponent
-=======
+    HomeComponent,
     ProfileComponent
->>>>>>> 2e2903734a380904e742b8b0f0fda31c7f8411f7
   ],
   imports: [
     BrowserModule,

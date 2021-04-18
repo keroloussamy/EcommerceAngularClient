@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IProduct } from 'src/_sharedClasses&Interfaces/IProduct';
+import { IProduct } from 'src/app/Shared/IProduct';
 import { Observable, throwError } from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
