@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CategoryService } from 'src/app/Services/category.service';
-import { ICategory } from 'src/app/Shared/icategory';
+import { CategoryService } from 'src/_services/category.service';
+import { ICategory } from 'src/Shared/icategory';
 
 @Component({
   selector: 'app-add-ctegory',

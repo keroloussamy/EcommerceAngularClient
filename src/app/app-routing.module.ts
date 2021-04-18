@@ -7,18 +7,14 @@ import { EditCategoryComponent } from '../admin/Category/edit-category/edit-cate
 import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path:"category/add", component:AddCtegoryComponent},
-  {
-    path: 'category/add',
-    loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
-  },
-  {path:"categories", component:CategoriesListComponent},
-  {path:"categories/edit/:id", component:EditCategoryComponent},
+  { path: '', component: HomeComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: 'home', component: HomeComponent}
 ];
 
 @NgModule({
