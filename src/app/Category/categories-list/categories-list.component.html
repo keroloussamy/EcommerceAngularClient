@@ -1,0 +1,28 @@
+<div class="container m-5">
+    <h2>Categories List</h2>
+    <a type="button"  class="btn btn-outline-success m-2" [routerLink]="['/category/add']"  
+         style="float: right;"> Add category</a>
+    <table class="table table-light">
+        
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cat of catList;let i= index">
+                <td>{{cat.id}}</td>
+                <td>{{cat.name}}</td>
+                <td>
+                    <a class="btn btn-dark" routerLink="/categories/edit/{{cat.id}}" >Edit</a>
+                </td>
+                <td>
+                    <button class="btn btn-dark" (click)="deletCategory(cat.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TokenStorageService } from 'src/_services/token-storage.service';
+import { UserService } from 'src/_services/user.service';
+
 
 
 @Component({
@@ -9,31 +10,18 @@ import { TokenStorageService } from 'src/_services/token-storage.service';
 })
 export class AppComponent {
   title = 'Angular Client';
-  private roles: string[] = [];
-  isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username?: string;
+  content?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
-      this.username = user.username;
-    }
+    this.userService.getAdminBoard().subscribe(
+      data => {
+        this.content = data;
+      },
+      err => {
+        this.content = JSON.parse(err.error);
+      }
+    );
   }
-
-  logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
-  }
-
 }
