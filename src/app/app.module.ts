@@ -5,9 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddCtegoryComponent } from './Category/add-ctegory/add-ctegory.component';
-import { CategoriesListComponent } from './Category/categories-list/categories-list.component';
-import { EditCategoryComponent } from './Category/edit-category/edit-category.component';
+import { AddCtegoryComponent } from '../admin/Category/add-ctegory/add-ctegory.component';
+import { CategoriesListComponent } from '../admin/Category/categories-list/categories-list.component';
+import { EditCategoryComponent } from '../admin/Category/edit-category/edit-category.component';
 
 
 
@@ -19,6 +19,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './auth/profile/profile.component';
+import { AdminModule } from 'src/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -38,9 +39,9 @@ import { ProfileComponent } from './auth/profile/profile.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule,
     BrowserModule,
-
+    AdminModule,
+    AppRoutingModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
