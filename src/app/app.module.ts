@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AddCtegoryComponent } from './Category/add-ctegory/add-ctegory.component';
+import { CategoriesListComponent } from './Category/categories-list/categories-list.component';
+import { EditCategoryComponent } from './Category/edit-category/edit-category.component';
+
+
+
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -16,6 +22,9 @@ import { ProfileComponent } from './auth/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
+    AddCtegoryComponent,
+    CategoriesListComponent,
+    EditCategoryComponent,
     HeaderComponent,
     FooterComponent,
     LoginComponent,
@@ -24,9 +33,11 @@ import { ProfileComponent } from './auth/profile/profile.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserModule,
 
   ],
   providers: [authInterceptorProviders],
