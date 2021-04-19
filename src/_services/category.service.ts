@@ -35,7 +35,6 @@ export class CategoryService {
 
   addCategory(cat: ICategory) {
     
-    console.log(cat)
 
     return this.http.post(environment.url_Api+"/api/Categories", cat)
 

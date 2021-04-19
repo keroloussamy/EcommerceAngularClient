@@ -1,10 +1,10 @@
 export interface IProduct
 {
-    Id:number
-    Name:string
-    Details:string
-    Price:number
-    Image:string
-    Quantity:number
-    CategoryId:number
+    id:number
+    name:string
+    details:string
+    price:number
+    image:string
+    quantity:number
+    categoryId:number
 }

@@ -7,6 +7,8 @@ import { EditCategoryComponent } from '../admin/Category/edit-category/edit-cate
 import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { FavouriteProductsComponent } from './components/favourite-products/favourite-products.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'product/:id', component: ProductDetailsComponent },
+  { path: 'FavouriteProducts', component: FavouriteProductsComponent },
   { path: 'home', component: HomeComponent}
 ];
 

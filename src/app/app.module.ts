@@ -20,6 +20,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { AdminModule } from 'src/admin/admin.module';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { FavouriteProductsComponent } from './components/favourite-products/favourite-products.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AdminModule } from 'src/admin/admin.module';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProductDetailsComponent,
+    FavouriteProductsComponent
   ],
   imports: [
     BrowserModule,
