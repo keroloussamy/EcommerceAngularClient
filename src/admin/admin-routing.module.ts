@@ -1,3 +1,4 @@
+import { RegisterAdminComponent } from './register-admin/register-admin.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,13 +8,18 @@ import { EditCategoryComponent } from '../admin/Category/edit-category/edit-cate
 
 
 const routes: Routes = [
-  {path:"category/add", component:AddCtegoryComponent, children: [
-    {path: 'start', loadChildren: 'app/modules/routes/login/login.module#LoginModule'}
-  ]},
-  {path:"categories", component:CategoriesListComponent},
-  {path:"categories/edit/:id", component:EditCategoryComponent, children: [
-    {path: 'start', loadChildren: 'app/modules/routes/login/login.module#LoginModule'}
-  ]},
+  {
+    path: "category/add", component: AddCtegoryComponent, children: [
+      { path: 'start', loadChildren: 'app/modules/routes/login/login.module#LoginModule' }
+    ]
+  },
+  { path: "categories", component: CategoriesListComponent },
+  {
+    path: "categories/edit/:id", component: EditCategoryComponent, children: [
+      { path: 'start', loadChildren: 'app/modules/routes/login/login.module#LoginModule' }
+    ]
+  },
+  {path: 'AddAdmin', component: RegisterAdminComponent},
 ]
 
 @NgModule({
