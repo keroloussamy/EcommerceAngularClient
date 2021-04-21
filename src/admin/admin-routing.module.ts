@@ -1,3 +1,4 @@
+import { RegisterAdminComponent } from './register-admin/register-admin.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,7 +20,8 @@ const routes: Routes = [
   ]},
   {path:"productslist", component:ProductsListComponent},
   {path:"product/add", component:AddProductComponent},
-  {path:"product/edit/:id", component:EditProductComponent}
+  {path:"product/edit/:id", component:EditProductComponent},
+  {path: 'AddAdmin', component: RegisterAdminComponent},
 ]
 
 @NgModule({

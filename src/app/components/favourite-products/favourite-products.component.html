@@ -1,0 +1,32 @@
+
+<h2 class="mt-4">Favorite List</h2>
+
+
+    <h3 class="text-center m-5 center-block" *ngIf="favProducts.length == 0">The Favorite list is empty</h3>
+
+
+
+<div class="row m-4" >
+    
+
+        <div class="col-sm-6 col-md-4 " *ngFor="let item of favProducts">
+            <div class="" >
+                <img src="../../../assets/Images/2.jpg" alt="item.product.name" style="width:20vw">
+                <div class="caption">
+                    <a [routerLink]="['/product',item.productId]"  >
+                        <h3>{{item.product.name}}</h3>
+                    </a>
+                    <p>{{item.product.price}}</p>
+                    <p>
+                        <a (click)="addToCart()" class="btn btn-primary" role="button">Add to the Cart</a>
+                        <button (click)="removeFromfavproducts(item.id)" class="btn btn-default" role="button">Remove</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+<p>
+    <a [routerLink]="['/home']" class="btn btn-primary">Continue Shopping</a>
+</p>
