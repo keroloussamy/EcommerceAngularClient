@@ -40,4 +40,17 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  searchProduct(keyword:string)
+  {
+    this.productService.searchProduct(keyword).subscribe(
+      data =>
+      {
+        this.products = data.result;
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+
 }

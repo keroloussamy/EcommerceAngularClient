@@ -4,9 +4,9 @@
 
         <form class="d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0 ff" method="get" action="/Home/Search">
             <div class="input-group">
-                <input class="form-control" name="proName" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                <input class="form-control" name="proName" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" #search />
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-primary" type="submit" (click)="searchProduct(search.value)"><i class="fas fa-search"></i></button>
                 </div>
             </div>
         </form>
@@ -51,12 +51,12 @@
         <div class="row">
             <div *ngFor="let product of products" class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="/Home/Product/@item.Id"><img class="card-img-top" src="/Resources/images/product.Image" alt=""></a>
+                    <a [routerLink]="['/product',product.id]"><img class="card-img-top" src="https://localhost:44330/Resources/images/{{product.image}}" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
                             <a [routerLink]="['/product',product.id]">{{product.name}}</a>
                         </h4>
-                        <h5>{{product.price}}</h5>
+                        <h5>${{product.price}}</h5>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,38 @@
+<div class="container m-5">
+    <h2>Products List</h2>
+    <a type="button"  class="btn btn-outline-success m-2" [routerLink]="['/product/add']"  
+         style="float: right;"> Add product</a>
+    <table class="table table-light">
+        
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Details</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products;let i= index">
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.details}}</td>
+                <td>{{product.price}}</td>
+                <td><img src="https://localhost:44330/Resources/images/{{product.image}}" /></td>
+                <td>{{product.quantity}}</td>
+                <td>{{categories[i]}}</td>
+                <td>
+                    <a class="btn btn-dark" routerLink="/product/edit/{{product.id}}" >Edit</a>
+                </td>
+                <td>
+                    <button class="btn btn-dark" (click)="deletProduct(product.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
