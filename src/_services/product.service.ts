@@ -45,7 +45,7 @@ export class ProductService {
     }));
   }
 
-  searchProduct(keyword:string): Observable<IProduct[]>{
+  searchProduct(keyword:string): Observable<any>{
     return this.http.get<IProduct[]>(Url+"/api/Products/Search/"+keyword, httpOptions).pipe(catchError((err)=>
     {
       return throwError(err.message ||"Internal Server error contact site adminstarator");
@@ -74,7 +74,8 @@ export class ProductService {
   }
 
   uploadProductImage(formData:FormData): Observable<any>{
-    return this.http.post(Url+"/uploadImage", formData, httpOptions).pipe(catchError((err)=>
+    console.log(formData);
+    return this.http.post(Url+"/uploadImage", formData).pipe(catchError((err)=>
     {
       return throwError(err.message ||"Internal Server error contact site adminstarator");
     }));
