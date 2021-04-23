@@ -1,8 +1,6 @@
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddCtegoryComponent } from '../admin/Category/add-ctegory/add-ctegory.component';
-import { CategoriesListComponent } from '../admin/Category/categories-list/categories-list.component';
-import { EditCategoryComponent } from '../admin/Category/edit-category/edit-category.component';
 
 import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './auth/profile/profile.component';
@@ -18,6 +16,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'FavouriteProducts', component: FavouriteProductsComponent },
+  { path: 'shoppingCart', component: ShoppingCartComponent },
   { path: 'home', component: HomeComponent}
 ];
 

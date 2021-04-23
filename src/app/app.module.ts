@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,11 +18,14 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { SubjectService } from './../_services/subject.service';
+
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { AdminModule } from 'src/admin/admin.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FavouriteProductsComponent } from './components/favourite-products/favourite-products.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,8 @@ import { FavouriteProductsComponent } from './components/favourite-products/favo
     HomeComponent,
     ProfileComponent,
     ProductDetailsComponent,
-    FavouriteProductsComponent
+    FavouriteProductsComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,7 @@ import { FavouriteProductsComponent } from './components/favourite-products/favo
     AdminModule,
     AppRoutingModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, SubjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

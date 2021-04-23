@@ -1,47 +1,50 @@
+<div class="container" *ngIf="prd!=null">
+    <hr>
 
 
+    <div class="card">
+        <div class="row">
+            <aside class="col-sm-5 border-right">
+                <article class="gallery-wrap">
+                    <div class="img-big-wrap">
+                        <div>
+                            <a href="#"><img src="../../../assets/Images/prd.image" id="prdImg"></a>
+                        </div>
+                    </div>
+                    <!-- slider-product.// -->
 
-<div class="container" *ngIf="prd!=null" >
-  <hr>
+                </article>
+                <!-- gallery-wrap .end// -->
+            </aside>
+            <aside class="col-sm-7">
+                <article class="card-body p-5">
+                    <h3 class="title mb-3">{{prd.name}}</h3>
 
-
-  <div class="card">
-    <div class="row">
-      <aside class="col-sm-5 border-right">
-        <article class="gallery-wrap">
-          <div class="img-big-wrap">
-            <div> <a href="#"><img src="../../../assets/Images/prd.image" id="prdImg"></a></div>
-          </div> <!-- slider-product.// -->
-
-        </article> <!-- gallery-wrap .end// -->
-      </aside>
-      <aside class="col-sm-7">
-        <article class="card-body p-5">
-          <h3 class="title mb-3">{{prd.name}}</h3>
-
-          <p class="price-detail-wrap">
-            <span class="price h3 text-warning">
+                    <p class="price-detail-wrap">
+                        <span class="price h3 text-warning">
               <span class="currency">Price: $</span><span class="num">{{prd.price}}</span>
-            </span>
-          </p> <!-- price-detail-wrap .// -->
-          <dl class="item-property">
-            <dt>Description</dt>
-            <dd>
-              <p>{{prd.details}} </p>
-            </dd>
-          </dl>
+                        </span>
+                    </p>
+                    <!-- price-detail-wrap .// -->
+                    <dl class="item-property">
+                        <dt>Description</dt>
+                        <dd>
+                            <p>{{prd.details}} </p>
+                        </dd>
+                    </dl>
 
-          <dl class="param param-feature">
-            <dt>Delivery to</dt>
-            <dd>Egypt, USA, and Europe</dd>
-          </dl> <!-- item-property-hor .// -->
+                    <dl class="param param-feature">
+                        <dt>Delivery to</dt>
+                        <dd>Egypt, USA, and Europe</dd>
+                    </dl>
+                    <!-- item-property-hor .// -->
 
-          <hr>
-          <dl class="param param-feature">
-            <dt>Quantity: </dt>
-            <dd>{{prd.quantity}}</dd>
-          </dl>
-          <!-- <div class="row">
+                    <hr>
+                    <dl class="param param-feature">
+                        <dt>Quantity: </dt>
+                        <dd>{{prd.quantity}}</dd>
+                    </dl>
+                    <!-- <div class="row">
             <div class="col-sm-5">
                 <dl class="param param-inline">
                   <dt>Quantity: </dt>
@@ -52,24 +55,29 @@
                           <option> 3 </option>
                       </select>
                   </dd>
-                </dl>  
-            </div> 
-           
+                </dl>
+            </div>
+
         </div>  -->
-          <hr>
-          <button (click)="AddToFavourite()" class="btn btn-lg btn-primary text-uppercase mr-3">Add to Favorite
+                    <hr>
+                    <button (click)="AddToFavourite()" class="btn btn-lg btn-primary text-uppercase mr-3">Add to Favorite
           </button>
-          <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to
-            cart </a>
-          <div *ngIf="isAdded" class="m-2">successfully added</div>
-        </article> <!-- card-body.// -->
-      </aside> <!-- col.// -->
-    </div> <!-- row.// -->
-  </div> <!-- card.// -->
+                    <button (click)="addToCart()" class="btn btn-lg btn-outline-primary text-uppercase">
+            <i class="fas fa-shopping-cart"></i> Add to cart </button>
+
+                    <div *ngIf="isAdded" class="m-2">successfully added</div>
+                </article>
+                <!-- card-body.// -->
+            </aside>
+            <!-- col.// -->
+        </div>
+        <!-- row.// -->
+    </div>
+    <!-- card.// -->
 
 
 </div>
 <!--container.//-->
 
 <div *ngIf="prd==null" id="not-found">
-  the product not found</div>
+    the product not found</div>
