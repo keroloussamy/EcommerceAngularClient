@@ -10,6 +10,8 @@ import { TokenStorageService } from './token-storage.service';
 const url: string = environment.url_Api + "/api/Orders";
 const url_visa: string = environment.url_Api + "/api/visas";
 const url_paypal: string = environment.url_Api + "/api/payPals";
+const url_OrderedProducts: string = environment.url_Api + "/api/OrderedProducts";
+
 
 @Injectable({
   providedIn: 'root'
@@ -73,6 +75,24 @@ export class OrderService {
   addPaypal(payPal: IPaypal) {
 
     return this.http.post(url_paypal, payPal)
+
+  }
+
+  addOrdersProductArray(orderdPrds: any[] ,orderId:number) {
+    orderdPrds.forEach(prd => {
+      this.addOrdersProduct(
+        {quantity:prd.quantity,
+          productId:prd.productId,
+          orderId:orderId})
+          .subscribe(d=>console.log("PRODUCT ADD SCCESS"))
+    });
+
+  }
+
+  
+  addOrdersProduct(orderdPrd: any) {
+   
+   return this.http.post(url_OrderedProducts, orderdPrd)
 
   }
 
