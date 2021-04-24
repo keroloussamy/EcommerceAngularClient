@@ -18,7 +18,8 @@ export class OrderComponent implements OnInit {
   constructor(private orderService: OrderService
     , private route: ActivatedRoute
     , private shoppingCartProducts: ShoppingCartProductsService
-    , private router: Router) {
+    , private router: Router
+    ) {
 
   }
 

@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { IOrder } from 'src/Shared/iorder';
 import { IPaypal } from 'src/Shared/ipaypal';
 import { IVisa } from 'src/Shared/ivisa';
+import { ShoppingCartProductsService } from './shopping-cart-products.service';
+import { SubjectService } from './subject.service';
 import { TokenStorageService } from './token-storage.service';
 
 const url: string = environment.url_Api + "/api/Orders";
@@ -19,7 +21,9 @@ const url_OrderedProducts: string = environment.url_Api + "/api/OrderedProducts"
 export class OrderService {
 
   constructor(private http: HttpClient,
-    private tokenStorageService: TokenStorageService) { }
+    private tokenStorageService: TokenStorageService
+    , private shoppingCartProducts: ShoppingCartProductsService
+    , private subjectService: SubjectService) { }
 
 
   getAllOrders(): Observable<IOrder[]> {
@@ -79,13 +83,22 @@ export class OrderService {
   }
 
   addOrdersProductArray(orderdPrds: any[] ,orderId:number) {
+    let userId = this.tokenStorageService.getUser().userId;
+
     orderdPrds.forEach(prd => {
       this.addOrdersProduct(
         {quantity:prd.quantity,
           productId:prd.productId,
           orderId:orderId})
-          .subscribe(d=>console.log("PRODUCT ADD SCCESS"))
+          .subscribe(d=>
+            {
+              this.shoppingCartProducts.delete(prd.productId ,userId).subscribe(
+                a=>this.subjectService.sendClickEvent()
+              )
+
+            })
     });
+
 
   }
 
