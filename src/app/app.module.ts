@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +18,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { SubjectService } from './../_services/subject.service';
+
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { AdminModule } from 'src/admin/admin.module';
@@ -26,6 +29,8 @@ import { AdminHeaderComponent } from 'src/app/adminlayout/admin-header/admin-hea
 import { AdminFooterComponent } from 'src/app/adminlayout/admin-footer/admin-footer.component';
 import { AdminSidebarComponent } from 'src/app/adminlayout/admin-sidebar/admin-sidebar.component';
 import { from } from 'rxjs';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,9 @@ import { from } from 'rxjs';
     FavouriteProductsComponent,
     AdminHeaderComponent,
     AdminFooterComponent,
-    AdminSidebarComponent
+    AdminSidebarComponent,
+    ShoppingCartComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +61,7 @@ import { from } from 'rxjs';
     AdminModule,
     AppRoutingModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, SubjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

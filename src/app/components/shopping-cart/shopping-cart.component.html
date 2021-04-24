@@ -1,0 +1,31 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Image</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of products">
+            <td scope="row">{{item.productName}}</td>
+            <td>{{item.productImage}}</td>
+            <td><input style="width: 100px;" type="number" max="{{item.productMaxQuantity}}" min="1" value="{{item.quantity}}" class="form-control"></td>
+            <td>{{item.productPrice}}</td>
+            <td *ngIf="item.productPrice">{{item.productPrice * item.quantity}}</td>
+            <th><button (click)="delete(item.productId)"><i class="far fa-trash-alt"></i></button></th>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td colspan="1"><b>Total:</b> </td>
+            <td colspan="1"><b>{{ getTotal() }}</b></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<a [routerLink]="['/order',getTotal()]"  class="btn btn-primary m-2" >Checkout</a>
+<a [routerLink]="['/home']" class="btn btn-primary m-2">Continue Shopping</a>
