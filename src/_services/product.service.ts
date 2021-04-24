@@ -74,8 +74,14 @@ export class ProductService {
   }
 
   uploadProductImage(formData:FormData): Observable<any>{
-    console.log(formData);
     return this.http.post(Url+"/uploadImage", formData).pipe(catchError((err)=>
+    {
+      return throwError(err.message ||"Internal Server error contact site adminstarator");
+    }));
+  }
+
+  getProductByCategoryId(id:number): Observable<IProduct[]>{
+    return this.http.get<IProduct[]>(Url+"/Category/"+id, httpOptions).pipe(catchError((err)=>
     {
       return throwError(err.message ||"Internal Server error contact site adminstarator");
     }));

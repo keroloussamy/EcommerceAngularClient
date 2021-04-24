@@ -1,4 +1,4 @@
-<div class="container m-5">
+<div class="container">
     <h2>Categories List</h2>
     <a type="button"  class="btn btn-outline-success m-2" [routerLink]="['/category/add']"  
          style="float: right;"> Add category</a>
@@ -17,7 +17,7 @@
                 <td>{{cat.id}}</td>
                 <td>{{cat.name}}</td>
                 <td>
-                    <a class="btn btn-dark" routerLink="/categories/edit/{{cat.id}}" >Edit</a>
+                    <a class="btn btn-dark" routerLink="/admin/category/edit/{{cat.id}}" >Edit</a>
                 </td>
                 <td>
                     <button class="btn btn-dark" (click)="deletCategory(cat.id)">Delete</button>

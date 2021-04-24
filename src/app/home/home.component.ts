@@ -15,15 +15,7 @@ export class HomeComponent implements OnInit {
   categories: ICategory[] = [];
   
   constructor(private productService:ProductService, private categoryServices:CategoryService) { 
-    this.productService.getAllProducts().subscribe(
-      data =>
-      {
-        this.products = data;
-      },
-      err=>{
-        console.log(err);
-      }
-    );
+    this.getAllProducts();
 
     this.categoryServices.getCategories().subscribe(
       data =>
@@ -46,6 +38,32 @@ export class HomeComponent implements OnInit {
       data =>
       {
         this.products = data.result;
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+
+  getProductsByCategory(id:number)
+  {
+    this.productService.getProductByCategoryId(id).subscribe(
+      data =>
+      {
+        this.products = data;
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+
+  getAllProducts()
+  {
+    this.productService.getAllProducts().subscribe(
+      data =>
+      {
+        this.products = data;
       },
       err=>{
         console.log(err);

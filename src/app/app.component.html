@@ -1,11 +1,18 @@
-<app-header></app-header>
-<div class="container">
+<app-header *ngIf="!showAdminLayout()"></app-header>
+<app-admin-header id="app" *ngIf="showAdminLayout()"></app-admin-header>
+
+
+<div class="container" *ngIf="!showAdminLayout()">
     <router-outlet></router-outlet>
 </div>
-<!-- Hello
-<div class="container">
-    <header class="jumbotron">
-        <p>{{ content }}</p>
-    </header>
-</div> -->
-<app-footer></app-footer>
+
+<div id="layoutSidenav" *ngIf="showAdminLayout()">
+    <app-admin-sidebar id="layoutSidenav_nav"></app-admin-sidebar>
+    <div id="layoutSidenav_content">
+        <main style="padding: 30px">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>
+
+<app-footer *ngIf="!showAdminLayout()"></app-footer>

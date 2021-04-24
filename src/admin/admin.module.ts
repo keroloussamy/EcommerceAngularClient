@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterAdminComponent } from './register-admin/register-admin.component';
 
 import { authInterceptorProviders } from 'src/app/_helpers/auth.interceptor';
+import { OrdersListComponent } from './Order/orders-list/orders-list.component';
+import { OrderDetailsComponent } from './Order/order-details/order-details.component';
 
 
 
@@ -19,7 +21,9 @@ import { authInterceptorProviders } from 'src/app/_helpers/auth.interceptor';
     AddProductComponent,
     EditProductComponent,
     ProductsListComponent,
-    RegisterAdminComponent
+    RegisterAdminComponent,
+    OrdersListComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,6 @@ import { authInterceptorProviders } from 'src/app/_helpers/auth.interceptor';
     HttpClientModule
 
   ],
-  providers: [authInterceptorProviders]
+  providers: [authInterceptorProviders],
 })
 export class AdminModule { }

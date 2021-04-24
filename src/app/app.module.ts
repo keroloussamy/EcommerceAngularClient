@@ -22,6 +22,10 @@ import { ProfileComponent } from './auth/profile/profile.component';
 import { AdminModule } from 'src/admin/admin.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FavouriteProductsComponent } from './components/favourite-products/favourite-products.component';
+import { AdminHeaderComponent } from 'src/app/adminlayout/admin-header/admin-header.component';
+import { AdminFooterComponent } from 'src/app/adminlayout/admin-footer/admin-footer.component';
+import { AdminSidebarComponent } from 'src/app/adminlayout/admin-sidebar/admin-sidebar.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,10 @@ import { FavouriteProductsComponent } from './components/favourite-products/favo
     HomeComponent,
     ProfileComponent,
     ProductDetailsComponent,
-    FavouriteProductsComponent
+    FavouriteProductsComponent,
+    AdminHeaderComponent,
+    AdminFooterComponent,
+    AdminSidebarComponent
   ],
   imports: [
     BrowserModule,

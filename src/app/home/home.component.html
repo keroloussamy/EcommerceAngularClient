@@ -13,7 +13,8 @@
 
         <h1 class="my-4">Ecommerce</h1>
         <div class="list-group">
-            <a *ngFor="let category of categories" href="/home/GetProductsByCategory/@category.Id" class="list-group-item">{{category.name}}</a>
+            <a *ngFor="let category of categories" href="" (click)="getProductsByCategory(category.id)" class="list-group-item">{{category.name}}</a>
+            <a href="" (click)="getAllProducts()" class="list-group-item">All Categories</a>
         </div>
 
     </div>
