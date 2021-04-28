@@ -12,7 +12,7 @@
     <tbody>
         <tr *ngFor="let item of products">
             <td scope="row">{{item.productName}}</td>
-            <td>{{item.productImage}}</td>
+            <td><img src="https://localhost:44330/Resources/images/{{item.productImage}}" width="40px" height="auto"/></td>
             <td><input style="width: 100px;" type="number" max="{{item.productMaxQuantity}}" min="1" value="{{item.quantity}}" class="form-control"></td>
             <td>{{item.productPrice}}</td>
             <td *ngIf="item.productPrice">{{item.productPrice * item.quantity}}</td>

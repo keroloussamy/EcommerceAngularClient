@@ -13,6 +13,7 @@ import { RegisterAdminComponent } from './register-admin/register-admin.componen
 import { authInterceptorProviders } from 'src/app/_helpers/auth.interceptor';
 import { OrdersListComponent } from './Order/orders-list/orders-list.component';
 import { OrderDetailsComponent } from './Order/order-details/order-details.component';
+import { AdminsListComponent } from './admins-list/admins-list.component';
 
 
 
@@ -24,6 +25,7 @@ import { OrderDetailsComponent } from './Order/order-details/order-details.compo
     RegisterAdminComponent,
     OrdersListComponent,
     OrderDetailsComponent,
+    AdminsListComponent,
   ],
   imports: [
     BrowserModule,

@@ -149,7 +149,7 @@ export class EditProductComponent implements OnInit {
     this.productService.updateProduct(this.product.id, product).subscribe(
       data=>
       {
-        this.router.navigateByUrl("/productslist")
+        this.router.navigateByUrl("/admin/products")
       },
       error=>
       {

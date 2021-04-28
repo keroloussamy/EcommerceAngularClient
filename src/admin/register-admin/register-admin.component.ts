@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/_services/auth.service';
 import { TokenStorageService } from 'src/_services/token-storage.service';
 
@@ -20,7 +21,7 @@ export class RegisterAdminComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -30,12 +31,7 @@ export class RegisterAdminComponent implements OnInit {
 
     this.authService.registerAdmin(firstname, lastname, username, email, password).subscribe(
       data => {
-        console.log(data);
-        this.tokenStorage.saveUser(data);
-        this.tokenStorage.saveToken(data.token);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-        window.location.href = '/';
+        this.router.navigateByUrl('/admin/adminList');
       },
       err => {
         console.log(err);

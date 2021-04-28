@@ -40,16 +40,16 @@ export class EditCategoryComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.router.navigateByUrl("/categories")
+          this.router.navigateByUrl("/admin/categories")
         },
         err => console.log(err)
       )
 
-    this.router.navigateByUrl("/categories")
+    this.router.navigateByUrl("/admin/categories")
 
   }
 
   goBack() {
-    this.router.navigateByUrl("/categories")
+    this.router.navigateByUrl("/admin/categories")
   }
 }

@@ -1,1 +1,27 @@
-<p>orders-list works!</p>
+<div class="container">
+    <h2>Orders List</h2>
+    <table class="table table-light">
+        
+        <thead class="thead-light">
+            <tr>
+                <th>Date</th>
+                <th>Total Price</th>
+                <th>User Who Ordered</th>
+                <th>Payment Method</th>
+                <th>Details</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders;let i= index">
+                <td>{{order.dateTime | date:'M/d/yy, h:mm a'}}</td>
+                <td>${{order.totalPrice}}</td>
+                <td>{{users[i].userName}}</td>
+                <td>{{paymentMethods[i].method}}</td>
+                <td><button (click)="orderDetails(order.id)" class="btn btn-primary">Details</button></td>
+                <td><button class="btn btn-primary" (click)="deleteOrder(order.id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
