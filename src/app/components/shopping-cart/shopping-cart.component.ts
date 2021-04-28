@@ -13,6 +13,8 @@ import { SubjectService } from 'src/_services/subject.service';
 export class ShoppingCartComponent implements OnInit {
   products: IShoppingCartProducts[] = [];
   total: number = 0;
+  qtyBinding:any = 1;
+
   constructor(private shoppingCartProducts: ShoppingCartProductsService,
     private tokenStorageService: TokenStorageService,
     private subjectService: SubjectService) {
@@ -55,6 +57,15 @@ export class ShoppingCartComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  checkQuantity(orderedQuantity:any, maxQuantity:any)
+  {
+    if(Number.parseInt(orderedQuantity) > Number.parseInt(maxQuantity))
+    {
+      alert("Quantity not available!");
+      this.qtyBinding = maxQuantity;
+    }
   }
 
 }
