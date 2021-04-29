@@ -10,8 +10,6 @@ import { AddCtegoryComponent } from '../admin/Category/add-ctegory/add-ctegory.c
 import { CategoriesListComponent } from '../admin/Category/categories-list/categories-list.component';
 import { EditCategoryComponent } from '../admin/Category/edit-category/edit-category.component';
 
-
-
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -31,6 +29,7 @@ import { AdminSidebarComponent } from 'src/app/adminlayout/admin-sidebar/admin-s
 import { from } from 'rxjs';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { OrderComponent } from './components/order/order.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +49,8 @@ import { OrderComponent } from './components/order/order.component';
     AdminFooterComponent,
     AdminSidebarComponent,
     ShoppingCartComponent,
-    OrderComponent
+    OrderComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,

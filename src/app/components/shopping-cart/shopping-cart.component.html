@@ -27,5 +27,5 @@
 </table>
 
 
-<a [routerLink]="['/order',getTotal()]"  class="btn btn-primary m-2" >Checkout</a>
+<a [routerLink]="['/order',getTotal()]" [class.disabled]="products.length == 0" class="btn btn-primary m-2" >Checkout</a>
 <a [routerLink]="['/home']" class="btn btn-primary m-2">Continue Shopping</a>
