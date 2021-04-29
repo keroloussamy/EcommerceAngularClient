@@ -1,13 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IOrder } from 'src/Shared/iorder';
+import { IPaymentMethod } from 'src/Shared/ipayment-method';
 import { IPaypal } from 'src/Shared/ipaypal';
 import { IVisa } from 'src/Shared/ivisa';
 import { ShoppingCartProductsService } from './shopping-cart-products.service';
 import { SubjectService } from './subject.service';
 import { TokenStorageService } from './token-storage.service';
+import {catchError} from 'rxjs/operators';
+import { IOrderedProduct } from 'src/Shared/iordered-product';
 
 const url: string = environment.url_Api + "/api/Orders";
 const url_visa: string = environment.url_Api + "/api/visas";
@@ -35,6 +38,28 @@ export class OrderService {
     };
 
     return this.http.get<IOrder[]>(url, httpOptions)
+  }
+
+  getOrder(id:number): Observable<IOrder> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // ,'Authorization': 'my-auth-token'
+      })
+    };
+
+    return this.http.get<IOrder>(url+"/"+id, httpOptions)
+  }
+
+  getOrderedProductsByOrder(id:number): Observable<IOrderedProduct[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // ,'Authorization': 'my-auth-token'
+      })
+    };
+
+    return this.http.get<IOrderedProduct[]>(url_OrderedProducts+"/Order/"+id, httpOptions)
   }
 
 
@@ -79,6 +104,27 @@ export class OrderService {
   addPaypal(payPal: IPaypal) {
 
     return this.http.post(url_paypal, payPal)
+
+  }
+
+  getVisa(id:number) {
+
+    return this.http.get(url_visa+"/"+id)
+
+  }
+
+  getPaypal(id:number) {
+
+    return this.http.get(url_paypal+"/"+id)
+
+  }
+
+  getPaymentMethod(id:number):Observable<IPaymentMethod> {
+
+    return this.http.get<IPaymentMethod>(environment.url_Api+"/api/PaymentMethods/"+id).pipe(catchError((err)=>
+    {
+      return throwError(err.message ||"Internal Server error contact site adminstarator");
+    }));
 
   }
 

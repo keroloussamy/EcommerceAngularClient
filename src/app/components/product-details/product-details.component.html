@@ -1,20 +1,15 @@
 <div class="container" *ngIf="prd!=null">
     <hr>
-
-
     <div class="card">
         <div class="row">
-            <aside class="col-sm-5 border-right">
+            <aside class="col-sm-5">
                 <article class="gallery-wrap">
                     <div class="img-big-wrap">
                         <div>
                             <a href="#"><img src="https://localhost:44330/Resources/images/{{prd.image}}" id="prdImg"></a>
                         </div>
                     </div>
-                    <!-- slider-product.// -->
-
                 </article>
-                <!-- gallery-wrap .end// -->
             </aside>
             <aside class="col-sm-7">
                 <article class="card-body p-5">
@@ -44,21 +39,6 @@
                         <dt>Quantity: </dt>
                         <dd>{{prd.quantity}}</dd>
                     </dl>
-                    <!-- <div class="row">
-            <div class="col-sm-5">
-                <dl class="param param-inline">
-                  <dt>Quantity: </dt>
-                  <dd>
-                      <select class="form-control form-control-sm" style="width:70px;">
-                          <option> 1 </option>
-                          <option> 2 </option>
-                          <option> 3 </option>
-                      </select>
-                  </dd>
-                </dl>
-            </div>
-
-        </div>  -->
                     <hr>
                     <button (click)="AddToFavourite()" class="btn btn-lg btn-primary text-uppercase mr-3">Add to Favorite
           </button>

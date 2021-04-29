@@ -1,1 +1,38 @@
-<p>order-details works!</p>
+<div class="container">
+    <h2>Order Details</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt>DateTime</dt>
+        <dd>{{order.dateTime | date:'M/d/yy, h:mm a'}}</dd>
+
+        <dt>Total Price</dt>
+        <dd>${{order.totalPrice}}</dd>
+
+        <dt>User Who Ordered</dt>
+        <dd>{{user.userName}}</dd>
+
+        <dt>Payment Method</dt>
+        <dd>{{paymentMethod.method}}</dd>
+
+        <dd *ngIf="paypal != null">Paypal account: {{paypal.account}}</dd>
+
+        <dd *ngIf="visa != null">Number: {{visa.number}}</dd>
+        <dd *ngIf="visa != null">Expire: {{visa.expire}}</dd>
+        <dd *ngIf="visa != null">Sequre Code: {{visa.sequreCode}}</dd>
+
+        <table class="table-hover table">
+            <tr>
+                <th>Product Name</th>
+                <th>Product Image</th>
+                <th>Product Quantity</th>
+                <th>Product Price</th>
+            </tr>
+            <tr *ngFor="let orderedProduct of orderedProducts; let i= index">
+                <td>{{products[i].name}}</td>
+                <td><img src="https://localhost:44330/Resources/images/{{products[i].image}}" width="150px" height="auto"/></td>
+                <td>{{orderedProduct.quantity}}</td>
+                <td>${{products[i].price}}</td>
+            </tr>
+        </table>
+    </dl>
+</div>

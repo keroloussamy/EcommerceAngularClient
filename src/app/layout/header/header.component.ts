@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   itemsNumber: number = 0;
   userId: string = '';
 
-  clickEventsubscription: Subscription;
+  clickEventsubscription: Subscription = new Subscription;
 
   constructor(private tokenStorageService: TokenStorageService,
     private shoppingCartProductsService: ShoppingCartProductsService,
