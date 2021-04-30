@@ -40,12 +40,7 @@ export class RegisterAdminComponent implements OnInit {
 
     this.authService.registerAdmin(firstname, lastname, username, email, password).subscribe(
       data => {
-        console.log(data);
-        this.tokenStorage.saveUser(data);
-        this.tokenStorage.saveToken(data.token);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-        window.location.href = '/';
+        this.router.navigateByUrl('/admin/adminList');
       },
       err => {
         console.log(err);

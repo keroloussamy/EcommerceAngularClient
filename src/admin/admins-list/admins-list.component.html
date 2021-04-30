@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>Admins List</h2>
+    <a type="button"  class="btn btn-outline-success m-2" [routerLink]="['/admin/AddAdmin']"  
+         style="float: right;"> Add Admin</a>
+    <table class="table table-light">
+        
+        <thead class="thead-light">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let admin of admins;let i= index">
+                <td>{{admin.firstName}}</td>
+                <td>{{admin.lastName}}</td>
+                <td>{{admin.userName}}</td>
+                <td>{{admin.email}}</td>
+                <td>
+                    <button class="btn btn-dark" (click)="deleteAdmin(admin.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

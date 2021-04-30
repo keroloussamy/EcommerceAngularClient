@@ -12,8 +12,8 @@
     <tbody>
         <tr *ngFor="let item of products">
             <td scope="row">{{item.productName}}</td>
-            <td>{{item.productImage}}</td>
-            <td><input style="width: 100px;" type="number" max="{{item.productMaxQuantity}}" min="1" value="{{item.quantity}}" class="form-control"></td>
+            <td><img src="https://localhost:44330/Resources/images/{{item.productImage}}" width="40px" height="auto"/></td>
+            <td><input style="width: 100px;" type="number" max="{{item.productMaxQuantity}}" (change)="checkQuantity(orderedQty.value, item.productMaxQuantity)" [(ngModel)]="qtyBinding" #orderedQty="ngModel" min="1" value="{{item.quantity}}" class="form-control"></td>
             <td>{{item.productPrice}}</td>
             <td *ngIf="item.productPrice">{{item.productPrice * item.quantity}}</td>
             <th><button (click)="delete(item.productId)"><i class="far fa-trash-alt"></i></button></th>
@@ -27,5 +27,5 @@
 </table>
 
 
-<a [routerLink]="['/order',getTotal()]"  class="btn btn-primary m-2" >Checkout</a>
+<a [routerLink]="['/order',getTotal()]" [class.disabled]="products.length == 0" class="btn btn-primary m-2" >Checkout</a>
 <a [routerLink]="['/home']" class="btn btn-primary m-2">Continue Shopping</a>

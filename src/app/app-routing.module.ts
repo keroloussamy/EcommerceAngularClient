@@ -9,6 +9,7 @@ import { FavouriteProductsComponent } from './components/favourite-products/favo
 import { OrderComponent } from './components/order/order.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { HomeComponent } from './home/home.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'FavouriteProducts', component: FavouriteProductsComponent },
   { path: 'shoppingCart', component: ShoppingCartComponent },
   { path: 'order/:total', component: OrderComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
+  { path: '**' ,component:NotFoundPageComponent}
 ];
 
 @NgModule({

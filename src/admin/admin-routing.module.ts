@@ -10,6 +10,7 @@ import { EditProductComponent } from './Product/edit-product/edit-product.compon
 import { ProductsListComponent } from './Product/products-list/products-list.component';
 import { OrdersListComponent } from './Order/orders-list/orders-list.component';
 import { OrderDetailsComponent } from './Order/order-details/order-details.component';
+import { AdminsListComponent } from './admins-list/admins-list.component';
 
 
 const routes: Routes = [
@@ -21,9 +22,10 @@ const routes: Routes = [
     {path:"product/add", component:AddProductComponent},
     {path:"product/edit/:id", component:EditProductComponent},
     {path: 'AddAdmin', component: RegisterAdminComponent},
+    {path: 'adminList', component:AdminsListComponent},
     {path: "orders", component: OrdersListComponent},
+    {path: "order/details/:id", component:OrderDetailsComponent},
     {path: "", component: OrdersListComponent},
-    {path: "order/details/:id", component: OrderDetailsComponent}
   ]}
   
 ]

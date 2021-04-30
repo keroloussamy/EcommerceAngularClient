@@ -32,13 +32,13 @@ export class AddCtegoryComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.router.navigateByUrl("/categories")
+          this.router.navigateByUrl("/admin/categories")
         },
         err => console.log(err)
       )
   }
   goBack() {
-    this.router.navigateByUrl("/categories")
+    this.router.navigateByUrl("/admin/categories")
   }
 
 }
