@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/_services/auth.service';
 import { TokenStorageService } from 'src/_services/token-storage.service';
 
@@ -20,12 +21,21 @@ export class RegisterAdminComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.tokenStorage.getUser());
+    if (this.tokenStorage.getUser().roles.includes("Admin")) {
+
+    } else {
+      this.router.navigate(['']);
+    }
   }
 
   onSubmit(): void {
+
     const { firstname, lastname, username, email, password } = this.form;
 
     this.authService.registerAdmin(firstname, lastname, username, email, password).subscribe(

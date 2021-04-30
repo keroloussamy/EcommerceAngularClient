@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/_services/category.service';
 import { ICategory } from 'src/Shared/icategory';
+import { TokenStorageService } from 'src/_services/token-storage.service';
 
 @Component({
   selector: 'app-add-ctegory',
@@ -10,12 +11,16 @@ import { ICategory } from 'src/Shared/icategory';
   styleUrls: ['./add-ctegory.component.css']
 })
 export class AddCtegoryComponent implements OnInit {
-  createCategoryForm: FormGroup = new FormGroup ({
-      name: new FormControl('', [Validators.required])
-    });
+  createCategoryForm: FormGroup = new FormGroup({
+    name: new FormControl('', [Validators.required])
+  });
 
-  constructor(private catService: CategoryService, private router: Router
-    ) { }
+  constructor(private catService: CategoryService, private router: Router, private tokenStorageService: TokenStorageService
+  ) {
+    if (!this.tokenStorageService.getUser().roles.includes("Admin")) {
+      this.router.navigate(['']);
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -25,13 +30,14 @@ export class AddCtegoryComponent implements OnInit {
 
     this.catService.addCategory(this.createCategoryForm.value)
       .subscribe(
-        data =>{ console.log(data);
+        data => {
+          console.log(data);
           this.router.navigateByUrl("/categories")
         },
         err => console.log(err)
       )
   }
-  goBack(){
+  goBack() {
     this.router.navigateByUrl("/categories")
   }
 

@@ -1,3 +1,4 @@
+import { TokenStorageService } from './../../../_services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICategory } from 'src/Shared/icategory';
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class AddProductComponent implements OnInit {
 
   productForm = this.fb.group({
-    name: ['',[Validators.required]],
+    name: ['', [Validators.required]],
     details: ['', [Validators.required]],
     price: [, [Validators.required, Validators.min(1)]],
     image: ['', [Validators.required]],
@@ -22,103 +23,98 @@ export class AddProductComponent implements OnInit {
     categoryId: [, [Validators.required]]
   });
 
-  imageFile!: File; 
+  imageFile!: File;
 
-  categories:ICategory[] = [];
+  categories: ICategory[] = [];
 
-  isSubmitButtonClicked:boolean = false;
+  isSubmitButtonClicked: boolean = false;
 
-  constructor(private productService:ProductService, private categoryService:CategoryService, private fb:FormBuilder, private router: Router) {
+  constructor(private productService: ProductService, private tokenStorageService: TokenStorageService, private categoryService: CategoryService, private fb: FormBuilder, private router: Router) {
+    if (this.tokenStorageService.getUser().roles.includes("Admin")) {
+
+    } else {
+      this.router.navigate(['']);
+    }
     this.categoryService.getCategories().subscribe(
-      data=>
-      {
+      data => {
         this.categories = data;
       },
-      error=>
-      {
+      error => {
         console.log(error);
       }
     );
   }
 
-  get name(){
+  get name() {
     return this.productForm.get("name");
   }
 
-  get details(){
+  get details() {
     return this.productForm.get("details");
   }
 
-  get price(){
+  get price() {
     return this.productForm.get("price");
   }
 
-  get image(){
+  get image() {
     return this.productForm.get("image");
   }
 
-  get quantity(){
+  get quantity() {
     return this.productForm.get("quantity");
   }
 
-  get categoryId(){
+  get categoryId() {
     return this.productForm.get("categoryId");
   }
 
   ngOnInit(): void {
   }
 
-  submitButtonClicked(){
+  submitButtonClicked() {
     this.isSubmitButtonClicked = true;
-    if(!this.productForm.invalid)
-    {
+    if (!this.productForm.invalid) {
       this.uploadImage(this.imageFile);
     }
   }
 
-  uploadImage(image:File)
-  {
+  uploadImage(image: File) {
     console.log(image.name);
     const formDate = new FormData();
-    formDate.append("file",image,image.name);
+    formDate.append("file", image, image.name);
     this.productService.uploadProductImage(formDate).subscribe(
-      data=>
-      {
+      data => {
         this.SaveProduct(data);
       },
-      error=>
-      {
+      error => {
         console.log(error)
       }
     );
   }
 
-  SaveProduct(data:any){
-    var product:IProduct = {
-      id : 0,
-      name : this.name?.value,
-      details : this.details?.value,
-      price : this.price?.value,
-      image : data.fileName,
-      quantity : this.quantity?.value,
-      categoryId : this.categoryId?.value
+  SaveProduct(data: any) {
+    var product: IProduct = {
+      id: 0,
+      name: this.name?.value,
+      details: this.details?.value,
+      price: this.price?.value,
+      image: data.fileName,
+      quantity: this.quantity?.value,
+      categoryId: this.categoryId?.value
     }
     this.productService.addProduct(product).subscribe(
-      data=>
-      {
+      data => {
         this.router.navigateByUrl("/productslist")
       },
-      error=>
-      {
+      error => {
         console.log(error)
       }
     );
   }
 
-  onFileChange(event:any)
-  {
-    if(event.target.files.length > 0)
-    {
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
       this.imageFile = event.target.files[0];
     }
   }

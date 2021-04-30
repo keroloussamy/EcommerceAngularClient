@@ -5,6 +5,7 @@ import { ICategory } from 'src/Shared/icategory';
 import { IProduct } from 'src/Shared/IProduct';
 import { CategoryService } from 'src/_services/category.service';
 import { ProductService } from 'src/_services/product.service';
+import { TokenStorageService } from 'src/_services/token-storage.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -13,94 +14,94 @@ import { ProductService } from 'src/_services/product.service';
 })
 export class EditProductComponent implements OnInit {
 
-  productId:number = 0;
+  productId: number = 0;
 
-  product:IProduct = {
-    id : 0,
-    name : '',
+  product: IProduct = {
+    id: 0,
+    name: '',
     details: '',
     image: '',
-    price : 0,
+    price: 0,
     quantity: 0,
-    categoryId : 0
+    categoryId: 0
   }
 
   productForm = this.fb.group({
-    name: ['' ,[Validators.required]],
-    details: ['' , [Validators.required]],
-    price: [ , [Validators.required, Validators.min(1)]],
+    name: ['', [Validators.required]],
+    details: ['', [Validators.required]],
+    price: [, [Validators.required, Validators.min(1)]],
     image: [''],
-    quantity: [ , [Validators.required, Validators.min(1)]],
-    categoryId: [ , [Validators.required]]
+    quantity: [, [Validators.required, Validators.min(1)]],
+    categoryId: [, [Validators.required]]
   });
 
-  imageFile!: File; 
+  imageFile!: File;
 
-  categories:ICategory[] = [];
+  categories: ICategory[] = [];
 
-  isSubmitButtonClicked:boolean = false;
+  isSubmitButtonClicked: boolean = false;
 
-  constructor(private productService:ProductService
+  constructor(private productService: ProductService
     , private categoryService: CategoryService
     , private router: Router
     , private activatedroute: ActivatedRoute
-    , private fb:FormBuilder) 
-  {
+    , private fb: FormBuilder
+    , private tokenStorageService: TokenStorageService) {
 
-      this.activatedroute.params.subscribe(data => {
-        this.productId = data.id;
-      });
+    if (!this.tokenStorageService.getUser().roles.includes("Admin")) {
+      this.router.navigate(['']);
+    }
+    this.activatedroute.params.subscribe(data => {
+      this.productId = data.id;
+    });
 
-      this.categoryService.getCategories().subscribe(
-        data=>
-        {
-          this.categories = data;
-        },
-        error=>
-        {
-          console.log(error);
-        }
-      );
+    this.categoryService.getCategories().subscribe(
+      data => {
+        this.categories = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
 
-      this.productService.getProductById(this.productId).subscribe(
-        data => {
-          this.product = data;
-          console.log(this.product);
-          this.assignFormControlsToProductData();
-        },
-        error => console.log(error)
-      );
+    this.productService.getProductById(this.productId).subscribe(
+      data => {
+        this.product = data;
+        console.log(this.product);
+        this.assignFormControlsToProductData();
+      },
+      error => console.log(error)
+    );
   }
 
-  get name(){
+  get name() {
     return this.productForm.get("name");
   }
 
-  get details(){
+  get details() {
     return this.productForm.get("details");
   }
 
-  get price(){
+  get price() {
     return this.productForm.get("price");
   }
 
-  get image(){
+  get image() {
     return this.productForm.get("image");
   }
 
-  get quantity(){
+  get quantity() {
     return this.productForm.get("quantity");
   }
 
-  get categoryId(){
+  get categoryId() {
     return this.productForm.get("categoryId");
   }
 
   ngOnInit(): void {
   }
 
-  assignFormControlsToProductData()
-  {
+  assignFormControlsToProductData() {
     this.productForm.get("name")?.setValue(this.product.name);
     this.productForm.get("details")?.setValue(this.product.details);
     this.productForm.get("price")?.setValue(this.product.price);
@@ -108,60 +109,52 @@ export class EditProductComponent implements OnInit {
     this.productForm.get("categoryId")?.setValue(this.product.categoryId);
   }
 
-  submitButtonClicked(){
+  submitButtonClicked() {
     this.isSubmitButtonClicked = true;
-    if(!this.productForm.invalid)
-    {
-      if(this.imageFile == undefined)
-        this.SaveProduct({fileName:this.product.image});
+    if (!this.productForm.invalid) {
+      if (this.imageFile == undefined)
+        this.SaveProduct({ fileName: this.product.image });
       else
         this.uploadImage(this.imageFile);
     }
   }
 
-  uploadImage(image:File)
-  {
+  uploadImage(image: File) {
     console.log(image.name);
     const formDate = new FormData();
-    formDate.append("file",image,image.name);
+    formDate.append("file", image, image.name);
     this.productService.uploadProductImage(formDate).subscribe(
-      data=>
-      {
+      data => {
         this.SaveProduct(data);
       },
-      error=>
-      {
+      error => {
         console.log(error)
       }
     );
   }
 
-  SaveProduct(data:any){
-    var product:IProduct = {
-      id : this.product.id,
-      name : this.name?.value,
-      details : this.details?.value,
-      price : this.price?.value,
-      image : data.fileName,
-      quantity : this.quantity?.value,
-      categoryId : this.categoryId?.value
+  SaveProduct(data: any) {
+    var product: IProduct = {
+      id: this.product.id,
+      name: this.name?.value,
+      details: this.details?.value,
+      price: this.price?.value,
+      image: data.fileName,
+      quantity: this.quantity?.value,
+      categoryId: this.categoryId?.value
     }
     this.productService.updateProduct(this.product.id, product).subscribe(
-      data=>
-      {
+      data => {
         this.router.navigateByUrl("/productslist")
       },
-      error=>
-      {
+      error => {
         console.log(error)
       }
     );
   }
 
-  onFileChange(event:any)
-  {
-    if(event.target.files.length > 0)
-    {
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
       this.imageFile = event.target.files[0];
     }
   }
